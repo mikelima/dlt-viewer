@@ -24,6 +24,7 @@
 #include <QFile>
 #include <QLabel>
 #include <QTimer>
+#include <QComboBox>
 #include <QDir>
 
 #include "tablemodel.h"
@@ -88,6 +89,7 @@ private:
     /* Settings dialog containing also the settings parameter itself */
     SettingsDialog *settings;
     QLineEdit *searchTextToolbar;
+    QComboBox *searchComboBox;
 
     /* injections */
     QString injectionAplicationId;

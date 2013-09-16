@@ -206,10 +206,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(searchDlg->regexpCheckBox, SIGNAL(toggled(bool)), regexpButton, SLOT(setChecked(bool)));
 
     searchTextToolbar = new QLineEdit(ui->mainToolBar);
+    searchComboBox = new QComboBox(ui->mainToolBar);
+    searchComboBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    searchComboBox->setLineEdit(searchTextToolbar);
+    searchComboBox->setInsertPolicy(QComboBox::InsertAtTop);
     searchDlg->appendLineEdit(searchTextToolbar);
     connect(searchTextToolbar, SIGNAL(textEdited(QString)),searchDlg,SLOT(textEditedFromToolbar(QString)));
     connect(searchTextToolbar, SIGNAL(returnPressed()),searchDlg,SLOT(findNextClicked()));
-    action = ui->mainToolBar->addWidget(searchTextToolbar);
+    action = ui->mainToolBar->addWidget(searchComboBox);
     action = ui->mainToolBar->addAction(QIcon(":/toolbar/png/go-previous.png"), tr("Find Previous"));
     connect(action, SIGNAL(triggered()), searchDlg, SLOT(findPreviousClicked()));
     action = ui->mainToolBar->addAction(QIcon(":/toolbar/png/go-next.png"), tr("Find Next"));
